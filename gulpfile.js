@@ -1,8 +1,8 @@
-var gulp = require('gulp');
-var shell = require('gulp-shell')
-var argv = require('yargs').argv;
-var file = require('gulp-file');
-var fs = require('fs');
+const gulp = require('gulp');
+const shell = require('gulp-shell')
+const argv = require('yargs').argv;
+const file = require('gulp-file');
+const fs = require('fs');
 
 // Arguments checks
 if (argv.name === undefined) {
@@ -15,9 +15,9 @@ function getFileContent(file) {
   return fs.readFileSync(file, 'utf8');
 }
 
-// Global vars
-var name = argv.name;
-var directory = 'output/' + name;
+// Global constants
+const name = argv.name;
+const directory = 'output/' + name;
 
 // Tasks
 gulp.task('create-angular-project',
@@ -68,8 +68,8 @@ gulp.task('add-nojekyll', function() {
 });
 
 gulp.task('update-angular.json', function() {
-  var content = getFileContent(directory + '/angular.json');
-  var newContent = content.replace('"src/assets"', `"src/assets",
+  const content = getFileContent(directory + '/angular.json');
+  const newContent = content.replace('"src/assets"', `"src/assets",
               "src/_locales",
               "src/manifest.json",
               "src/.nojekyll"`);
@@ -79,8 +79,8 @@ gulp.task('update-angular.json', function() {
 });
 
 gulp.task('update-package.json', function() {
-  var content = getFileContent(directory + '/package.json');
-  var newContent = content.replace('"build": "ng build",', `"build": "ng build --aot --prod --sourceMap=false --outputHashing=none",
+  const content = getFileContent(directory + '/package.json');
+  const newContent = content.replace('"build": "ng build",', `"build": "ng build --aot --prod --sourceMap=false --outputHashing=none",
     "package": "web-ext build --source-dir=dist/` + name + ` --artifacts-dir=.",
     "ghbuild": "ng build --prod --base-href \\"/` + name + `/\\"",
     "ghdeploy": "ngh --dir=dist/` + name + `",`);
