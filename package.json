@@ -1,0 +1,17 @@
+{
+  "name": "angular-webextension-starter",
+  "version": "1.0.0",
+  "description": "Angular Web extension starter kit",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angular",
+    "web",
+    "extension",
+    "starter"
+  ],
+  "author": "AXeL-dev",
+  "license": "MPL-2.0"
+}
