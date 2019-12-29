@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+
+  "name": "__MSG_extensionName__",
+  "version": "0.0.0",
+
+  "default_locale": "en",
+  "description": "__MSG_extensionDesc__",
+  "icons": {
+    "128": "assets/images/icon.png"
+  },
+
+  "web_accessible_resources": ["assets/images/*.png"],
+
+  "browser_action": {
+    "default_icon": "assets/images/icon.png",
+    "default_popup": "index.html"
+  },
+
+  "options_ui":{
+    "page": "index.html?page=settings",
+    "browser_style": false,
+    "open_in_tab": false
+  },
+
+  "author": "",
+  "homepage_url": "",
+
+  "permissions": [
+    "storage",
+    "notifications"
+  ]
+}
