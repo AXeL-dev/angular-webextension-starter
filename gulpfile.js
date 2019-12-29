@@ -11,15 +11,20 @@ if (argv.name === undefined) {
   process.exit(1);
 }
 
-// Global vars
-var name = argv.name;
-var nameSlug = slugify(name, {lower: true});
-var directory = 'output/' + nameSlug;
-
 // Functions
+function generateSlug(str) {
+  var strippedStr = str.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/([A-Z])([A-Z])/g, '$1-$2');
+  return slugify(strippedStr, {lower: true});
+}
+
 function getFileContent(file) {
   return fs.readFileSync(file, 'utf8');
 }
+
+// Global vars
+var name = argv.name;
+var nameSlug = generateSlug(name);
+var directory = 'output/' + nameSlug;
 
 // Tasks
 gulp.task('create-angular-project',
