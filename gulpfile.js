@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var shell = require('gulp-shell')
 var argv = require('yargs').argv;
-var slugify = require('slugify');
 var file = require('gulp-file');
 var fs = require('fs');
 
@@ -12,19 +11,13 @@ if (argv.name === undefined) {
 }
 
 // Functions
-function generateSlug(str) {
-  var strippedStr = str.replace(/([a-z])([A-Z])/g, '$1-$2').replace(/([A-Z])([A-Z])/g, '$1-$2');
-  return slugify(strippedStr, {lower: true});
-}
-
 function getFileContent(file) {
   return fs.readFileSync(file, 'utf8');
 }
 
 // Global vars
 var name = argv.name;
-var nameSlug = generateSlug(name);
-var directory = 'output/' + nameSlug;
+var directory = 'output/' + name;
 
 // Tasks
 gulp.task('create-angular-project',
@@ -88,9 +81,9 @@ gulp.task('update-angular.json', function() {
 gulp.task('update-package.json', function() {
   var content = getFileContent(directory + '/package.json');
   var newContent = content.replace('"build": "ng build",', `"build": "ng build --aot --prod --sourceMap=false --outputHashing=none",
-    "package": "web-ext build --source-dir=dist/` + nameSlug + ` --artifacts-dir=.",
-    "ghbuild": "ng build --prod --base-href \\"/` + nameSlug + `/\\"",
-    "ghdeploy": "ngh --dir=dist/` + nameSlug + `",`);
+    "package": "web-ext build --source-dir=dist/` + name + ` --artifacts-dir=.",
+    "ghbuild": "ng build --prod --base-href \\"/` + name + `/\\"",
+    "ghdeploy": "ngh --dir=dist/` + name + `",`);
 
   return file('package.json', newContent, { src: true })
     .pipe(gulp.dest(directory));
