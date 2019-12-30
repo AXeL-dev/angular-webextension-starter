@@ -22,17 +22,21 @@ Finally, make sure that both **Angular** & **Gulp** CLI(s) are installed:
 npm install -g @angular/cli gulp-cli
 ```
 
-## Quick start
-
-Run the following command in your terminal:
+## Usage
 
 ```
 gulp new --name <EXTENSION_NAME>
 ```
 
-:warning: Don't forget to change the `<EXTENSION_NAME>` argument to whatever name you like.
+:warning: All the newly created extensions will be under the `output` folder.
 
-:point_right: All the newly created extensions will be under the `output` folder.
+## Arguments
+
+ argument         |  default  | description
+----------------- | --------- | ------------------
+ **--name**       | -         | WebExtension name
+ **--author**     | ''        | Author name
+ **--url**        | ''        | Homepage url
 
 ## Contributing
 
