@@ -123,14 +123,6 @@ gulp.task('update-package.json', function() {
     .pipe(gulp.dest(directory));
 });
 
-gulp.task('update-package-lock.json', function() {
-  const content = getFileContent(getAbsolutePath('/package-lock.json'));
-  const newContent = content.replace(/"version": "(.*)"/, '"version": "' + version + '"');
-
-  return file('package-lock.json', newContent, { src: true })
-    .pipe(gulp.dest(directory));
-});
-
 // Main task
 gulp.task('new', gulp.series(
   'create-angular-project',
@@ -144,6 +136,5 @@ gulp.task('new', gulp.series(
   'add-manifest',
   'add-nojekyll',
   'update-angular.json',
-  'update-package.json',
-  'update-package-lock.json'
+  'update-package.json'
 ));
