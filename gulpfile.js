@@ -19,7 +19,7 @@ const fs = require('fs');
  * Arguments
  */
 const name = argv.name;
-const version = argv.version === undefined ? '0.0.0' : argv.version;
+const version = argv.ver === undefined ? '0.0.0' : argv.ver;
 const author = argv.author === undefined ? '' : argv.author;
 const url = argv.url === undefined ? '' : argv.url;
 
