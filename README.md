@@ -33,8 +33,9 @@ gulp new --name <EXTENSION_NAME>
 ## Arguments
 
  argument         |  default  | description
------------------ | --------- | ------------------
+----------------- | --------- | ---------------------
  **--name**       | -         | WebExtension name
+ **--version**    | '0.0.0'   | WebExtension version
  **--author**     | ''        | Author name
  **--url**        | ''        | Homepage url
 

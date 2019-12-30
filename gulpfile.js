@@ -19,6 +19,7 @@ const fs = require('fs');
  * Arguments
  */
 const name = argv.name;
+const version = argv.version === undefined ? '0.0.0' : argv.version;
 const author = argv.author === undefined ? '' : argv.author;
 const url = argv.url === undefined ? '' : argv.url;
 
@@ -86,7 +87,9 @@ gulp.task('add-locales', function() {
 
 gulp.task('add-manifest', function() {
   const content = getFileContent('tpl/src/manifest.json');
-  const newContent = content.replace('${author}', author).replace('${url}', url);
+  const newContent = content.replace(/"version": "(.*)"/, '"version": "' + version + '"')
+                            .replace('${author}', author)
+                            .replace('${url}', url);
 
   return file('manifest.json', newContent, { src: true })
     .pipe(gulp.dest(getAbsolutePath('/src')));
@@ -110,12 +113,21 @@ gulp.task('update-angular.json', function() {
 
 gulp.task('update-package.json', function() {
   const content = getFileContent(getAbsolutePath('/package.json'));
-  const newContent = content.replace('"build": "ng build",', `"build": "ng build --aot --prod --sourceMap=false --outputHashing=none",
+  const newContent = content.replace(/"version": "(.*)"/, '"version": "' + version + '"')
+                            .replace('"build": "ng build",', `"build": "ng build --aot --prod --sourceMap=false --outputHashing=none",
     "package": "web-ext build --source-dir=dist/` + name + ` --artifacts-dir=.",
     "ghbuild": "ng build --prod --base-href \\"/` + name + `/\\"",
     "ghdeploy": "ngh --dir=dist/` + name + `",`);
 
   return file('package.json', newContent, { src: true })
+    .pipe(gulp.dest(directory));
+});
+
+gulp.task('update-package-lock.json', function() {
+  const content = getFileContent(getAbsolutePath('/package-lock.json'));
+  const newContent = content.replace(/"version": "(.*)"/, '"version": "' + version + '"');
+
+  return file('package-lock.json', newContent, { src: true })
     .pipe(gulp.dest(directory));
 });
 
@@ -132,5 +144,6 @@ gulp.task('new', gulp.series(
   'add-manifest',
   'add-nojekyll',
   'update-angular.json',
-  'update-package.json'
+  'update-package.json',
+  'update-package-lock.json'
 ));
