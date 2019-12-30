@@ -19,8 +19,8 @@ const fs = require('fs');
  * Arguments
  */
 const name = argv.name;
-const author = author === undefined ? '' : argv.author;
-const url = url === undefined ? '' : argv.url;
+const author = argv.author === undefined ? '' : argv.author;
+const url = argv.url === undefined ? '' : argv.url;
 
 // Arguments checks
 if (name === undefined) {
