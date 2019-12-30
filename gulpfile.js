@@ -41,8 +41,8 @@ const directory = 'output/' + name;
 /**
  * Functions
  */
-function getFileContent(file) {
-  return fs.readFileSync(file, 'utf8');
+function getFileContent(file, encoding = 'utf8') {
+  return fs.readFileSync(file, encoding);
 }
 
 function getAbsolutePath(path) {
@@ -80,7 +80,7 @@ gulp.task('add-guard-service', function() {
 });
 
 gulp.task('add-assets', function() {
-  return file('icon.png', getFileContent('tpl/src/assets/images/icon.png'), { src: true })
+  return file('icon.png', getFileContent('tpl/src/assets/images/icon.png', null), { src: true })
     .pipe(gulp.dest(getAbsolutePath('/src/assets/images')));
 });
 
