@@ -4,20 +4,30 @@ const argv = require('yargs').argv;
 const file = require('gulp-file');
 const fs = require('fs');
 
+// Arguments
+const name = argv.name;
+const author = argv.author;
+const url = argv.url;
+
 // Arguments checks
-if (argv.name === undefined) {
+if (name === undefined) {
   console.log('Please provide --name argument');
   process.exit(1);
 }
+if (author === undefined) {
+  author = '';
+}
+if (url === undefined) {
+  url = '';
+}
+
+// Constants
+directory = 'output/' + name;
 
 // Functions
 function getFileContent(file) {
   return fs.readFileSync(file, 'utf8');
 }
-
-// Global constants
-const name = argv.name;
-const directory = 'output/' + name;
 
 // Tasks
 gulp.task('create-angular-project',
@@ -58,7 +68,10 @@ gulp.task('add-locales', function() {
 });
 
 gulp.task('add-manifest', function() {
-  return file('manifest.json', getFileContent('tpl/src/manifest.json'), { src: true })
+  const content = getFileContent('tpl/src/manifest.json');
+  const newContent = content.replace('${author}', author).replace('${url}', url);
+
+  return file('manifest.json', newContent, { src: true })
     .pipe(gulp.dest(directory + '/src'));
 });
 
