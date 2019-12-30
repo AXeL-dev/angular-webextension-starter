@@ -23,11 +23,15 @@ const version = argv.ver === undefined ? '0.0.0' : argv.ver;
 const author = argv.author === undefined ? '' : argv.author;
 const url = argv.url === undefined ? '' : argv.url;
 
-// Arguments checks
+// Parse arguments
 if (name === undefined) {
   console.log('Please provide --name argument');
   process.exit(1);
 }
+console.log('name:', name);
+console.log('version:', version);
+console.log('author:', author ? author : '-');
+console.log('url:', url ? url : '-');
 
 /**
  * Global constants
@@ -87,7 +91,7 @@ gulp.task('add-locales', function() {
 
 gulp.task('add-manifest', function() {
   const content = getFileContent('tpl/src/manifest.json');
-  const newContent = content.replace(/"version": "(.*)"/, '"version": "' + version + '"')
+  const newContent = content.replace(/"version": "(.*)"/g, '"version": "' + version + '"')
                             .replace('${author}', author)
                             .replace('${url}', url);
 
@@ -113,7 +117,7 @@ gulp.task('update-angular.json', function() {
 
 gulp.task('update-package.json', function() {
   const content = getFileContent(getAbsolutePath('/package.json'));
-  const newContent = content.replace(/"version": "(.*)"/, '"version": "' + version + '"')
+  const newContent = content.replace(/"version": "(.*)"/g, '"version": "' + version + '"')
                             .replace('"build": "ng build",', `"build": "ng build --aot --prod --sourceMap=false --outputHashing=none",
     "package": "web-ext build --source-dir=dist/` + name + ` --artifacts-dir=.",
     "ghbuild": "ng build --prod --base-href \\"/` + name + `/\\"",
