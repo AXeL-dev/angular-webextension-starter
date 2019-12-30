@@ -91,7 +91,7 @@ gulp.task('add-locales', function() {
 
 gulp.task('add-manifest', function() {
   const content = getFileContent('tpl/src/manifest.json');
-  const newContent = content.replace(/"version": "(.*)"/g, '"version": "' + version + '"')
+  const newContent = content.replace('${version}', version)
                             .replace('${author}', author)
                             .replace('${url}', url);
 
