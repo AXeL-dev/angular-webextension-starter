@@ -2,7 +2,7 @@
  * Angular WebExtension starter kit
  * 
  * @author      AXeL-dev <contact.axel.dev@gmail.com>
- * @license     MPL-2.0
+ * @license     MPL2
  * @link        https://github.com/AXeL-dev/angular-webextension-starter
  */
 
@@ -26,7 +26,7 @@ const skipTests = argv.skipTests === undefined ? 'false' : argv.skipTests;
 
 // Parse arguments
 if (name === undefined) {
-  console.log('Please provide --name argument');
+  console.log('--name argument is mandatory');
   process.exit(1);
 }
 console.log('name:', name);
