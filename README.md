@@ -38,6 +38,7 @@ gulp new --name <EXTENSION_NAME>
  **--ver**        | '0.0.0'   | WebExtension version
  **--author**     | ''        | Author name
  **--url**        | ''        | Homepage url
+ **--skipTests**  | false     | When true, does not generate "spec.ts" test files for the new extension
 
 ## Contributing
 

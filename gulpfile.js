@@ -22,6 +22,7 @@ const name = argv.name;
 const version = argv.ver === undefined ? '0.0.0' : argv.ver;
 const author = argv.author === undefined ? '' : argv.author;
 const url = argv.url === undefined ? '' : argv.url;
+const skipTests = argv.skipTests === undefined ? 'false' : argv.skipTests;
 
 // Parse arguments
 if (name === undefined) {
@@ -32,6 +33,7 @@ console.log('name:', name);
 console.log('version:', version);
 console.log('author:', author ? author : '-');
 console.log('url:', url ? url : '-');
+console.log('skipTests:', skipTests);
 
 /**
  * Global constants
@@ -53,7 +55,7 @@ function getAbsolutePath(path) {
  * Tasks
  */
 gulp.task('create-angular-project',
-  shell.task('ng new ' + name + ' --defaults --routing=true --skipGit=true --directory=' + directory)
+  shell.task('ng new ' + name + ' --defaults --routing=true --skipGit=true --directory=' + directory + ' --skipTests=' + skipTests)
 );
 
 gulp.task('generate-main-component',
