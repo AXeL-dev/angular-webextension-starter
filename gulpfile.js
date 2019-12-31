@@ -55,15 +55,15 @@ function getAbsolutePath(path) {
  * Tasks
  */
 gulp.task('create-angular-project',
-  shell.task('ng new ' + name + ' --defaults --routing=true --skipGit=true --directory=' + directory + ' --skipTests=' + skipTests)
+  shell.task(`ng new ${name} --defaults --routing=true --skipGit=true --skipTests=${skipTests} --directory=${directory}`)
 );
 
 gulp.task('generate-main-component',
-  shell.task('cd ' + directory + ' && ng g c components/main')
+  shell.task(`cd ${directory} && ng g c components/main`)
 );
 
 gulp.task('generate-settings-component',
-  shell.task('cd ' + directory + ' && ng g c components/settings')
+  shell.task(`cd ${directory} && ng g c components/settings`)
 );
 
 gulp.task('udpate-app-component', function() {
@@ -119,18 +119,18 @@ gulp.task('update-angular.json', function() {
 
 gulp.task('update-package.json', function() {
   const content = getFileContent(getAbsolutePath('/package.json'));
-  const newContent = content.replace(/"version": "(.*)"/g, '"version": "' + version + '"')
+  const newContent = content.replace(/"version": "(.*)"/g, `"version": "${version}"`)
                             .replace('"build": "ng build",', `"build": "ng build --aot --prod --sourceMap=false --outputHashing=none",
-    "package": "web-ext build --source-dir=dist/` + name + ` --artifacts-dir=.",
-    "ghbuild": "ng build --prod --base-href \\"/` + name + `/\\"",
-    "ghdeploy": "ngh --dir=dist/` + name + `",`);
+    "package": "web-ext build --source-dir=dist/${name} --artifacts-dir=.",
+    "ghbuild": "ng build --prod --base-href \\"/${name}/\\"",
+    "ghdeploy": "ngh --dir=dist/${name}",`);
 
   return file('package.json', newContent, { src: true })
     .pipe(gulp.dest(directory));
 });
 
 gulp.task('git-init',
-  shell.task('cd ' + directory + ' && git init && git add -A && git commit -m "initial commit"')
+  shell.task(`cd ${directory} && git init && git add -A && git commit -m "initial commit"`)
 );
 
 // Main task
