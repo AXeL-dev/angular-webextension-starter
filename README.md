@@ -1,6 +1,6 @@
 # Angular WebExtension starter
 
-A minimal Angular starter kit for Web extensions using the [Gulp CLI](https://gulpjs.com/).
+A minimal Angular starter kit for web extensions using [Gulp](https://gulpjs.com/).
 
 ## Installation
 
@@ -16,7 +16,7 @@ Then install all the dependencies using npm:
 cd angular-webextension-starter && npm install
 ```
 
-Finally, make sure that both **Angular** & **Gulp** CLI(s) are installed:
+Finally, make sure that both **Angular** & **Gulp** CLIs are installed:
 
 ```
 npm install -g @angular/cli gulp-cli
@@ -38,7 +38,7 @@ gulp new --name <EXTENSION_NAME>
  **--ver**        | 0.0.0     | WebExtension version
  **--author**     | -         | Author name
  **--url**        | -         | Homepage url
- **--skipTests**  | false     | When true, does not generate "spec.ts" test files for the new extension
+ **--skipTests**  | false     | When true, does not generate `spec.ts` test files for the new extension
 
 ## Contributing
 
