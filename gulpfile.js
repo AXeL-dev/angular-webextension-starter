@@ -53,7 +53,7 @@ function getAbsolutePath(path) {
  * Tasks
  */
 gulp.task('create-angular-project',
-  shell.task('ng new ' + name + ' --defaults --routing=true --directory=' + directory)
+  shell.task('ng new ' + name + ' --defaults --routing=true --skipGit=true --directory=' + directory)
 );
 
 gulp.task('generate-main-component',
@@ -127,6 +127,10 @@ gulp.task('update-package.json', function() {
     .pipe(gulp.dest(directory));
 });
 
+gulp.task('git-init',
+  shell.task('cd ' + directory + ' && git init && git add -A && git commit -m "initial commit"')
+);
+
 // Main task
 gulp.task('new', gulp.series(
   'create-angular-project',
@@ -140,5 +144,6 @@ gulp.task('new', gulp.series(
   'add-manifest',
   'add-nojekyll',
   'update-angular.json',
-  'update-package.json'
+  'update-package.json',
+  'git-init'
 ));
