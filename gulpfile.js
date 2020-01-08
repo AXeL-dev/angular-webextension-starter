@@ -58,8 +58,8 @@ gulp.task('create-angular-project',
   shell.task(`ng new ${name} --defaults --routing=true --skipGit=true --skipTests=${skipTests} --directory=${directory}`)
 );
 
-gulp.task('generate-main-component',
-  shell.task(`cd ${directory} && ng g c components/main`)
+gulp.task('generate-popup-component',
+  shell.task(`cd ${directory} && ng g c components/popup`)
 );
 
 gulp.task('generate-settings-component',
@@ -136,7 +136,7 @@ gulp.task('git-init',
 // Main task
 gulp.task('new', gulp.series(
   'create-angular-project',
-  'generate-main-component',
+  'generate-popup-component',
   'generate-settings-component',
   'udpate-app-component',
   'udpate-app-routing',
