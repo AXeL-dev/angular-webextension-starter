@@ -117,8 +117,8 @@ gulp.task('update-angular.json', function() {
               "src/manifest.json",
               "src/.nojekyll"`)
                             .replace('"scripts": []', `"scripts": [
-                "node_modules/webextension-polyfill/dist/browser-polyfill.min.js"
-              ]`);
+              "node_modules/webextension-polyfill/dist/browser-polyfill.min.js"
+            ]`);
 
   return file('angular.json', newContent, { src: true })
     .pipe(gulp.dest(directory));
