@@ -58,6 +58,10 @@ gulp.task('create-angular-project',
   shell.task(`ng new ${name} --defaults --routing=true --skipGit=true --skipTests=${skipTests} --directory=${directory}`)
 );
 
+gulp.task('install-packages',
+  shell.task(`cd ${directory} && npm install --save-dev web-ext-types webextension-polyfill`)
+);
+
 gulp.task('generate-popup-component',
   shell.task(`cd ${directory} && ng g c components/popup`)
 );
@@ -111,7 +115,10 @@ gulp.task('update-angular.json', function() {
   const newContent = content.replace('"src/assets"', `"src/assets",
               "src/_locales",
               "src/manifest.json",
-              "src/.nojekyll"`);
+              "src/.nojekyll"`)
+                            .replace('"scripts": []', `"scripts": [
+                "node_modules/webextension-polyfill/dist/browser-polyfill.min.js"
+              ]`);
 
   return file('angular.json', newContent, { src: true })
     .pipe(gulp.dest(directory));
@@ -136,6 +143,7 @@ gulp.task('git-init',
 // Main task
 gulp.task('new', gulp.series(
   'create-angular-project',
+  'install-packages',
   'generate-popup-component',
   'generate-settings-component',
   'udpate-app-component',
