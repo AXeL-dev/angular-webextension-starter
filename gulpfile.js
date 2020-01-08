@@ -136,15 +136,9 @@ gulp.task('update-package.json', function() {
     .pipe(gulp.dest(directory));
 });
 
-gulp.task('update-.gitignore', function() {
-  const content = getFileContent(getAbsolutePath('/.gitignore'));
-  const newContent = content.replace('/out-tsc', `/out-tsc
-*.zip
-*.crx
-*.pem`);
-
-  return file('.gitignore', newContent, { src: true })
-    .pipe(gulp.dest(directory));
+gulp.task('update-gitignore', function() {
+  return file('.gitignore', getFileContent('tpl/.gitignore'), { src: true })
+    .pipe(gulp.dest(getAbsolutePath('/')));
 });
 
 gulp.task('git-init',
@@ -166,6 +160,6 @@ gulp.task('new', gulp.series(
   'add-nojekyll',
   'update-angular.json',
   'update-package.json',
-  'update-.gitignore',
+  'update-gitignore',
   'git-init'
 ));
