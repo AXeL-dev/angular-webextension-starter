@@ -1,6 +1,6 @@
 # Angular WebExtension starter
 
-A minimal Angular starter kit for web extensions using [Gulp](https://gulpjs.com/).
+A minimal starter kit to quickly get started on your [Angular](https://angular.io/) based webextension(s), made with [Gulp](https://gulpjs.com/).
 
 ## Installation
 
