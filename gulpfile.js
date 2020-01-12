@@ -111,9 +111,17 @@ gulp.task('add-locales', function() {
 
 gulp.task('add-manifest', function() {
   const content = getFileContent('tpl/src/manifest.json');
-  const newContent = content.replace('${version}', version)
-                            .replace('${author}', author)
-                            .replace('${url}', url);
+  const newContent = content.replace('${version}', version);
+  if (author.length) {
+    newContent = newContent.replace('${author}', author);
+  } else {
+    newContent = newContent.replace('  "author": "${author}",' + "\n", '');
+  }
+  if (url.length) {
+    newContent = newContent.replace('${url}', url);
+  } else {
+    newContent = newContent.replace('  "homepage_url": "${url}",' + "\n", '');
+  }
 
   return file('manifest.json', newContent, { src: true })
     .pipe(gulp.dest(getExtensionPath('/src')));
