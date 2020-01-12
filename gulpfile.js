@@ -111,7 +111,7 @@ gulp.task('add-locales', function() {
 
 gulp.task('add-manifest', function() {
   const content = getFileContent('tpl/src/manifest.json');
-  const newContent = content.replace('${version}', version);
+  let newContent = content.replace('${version}', version);
   if (author.length) {
     newContent = newContent.replace('${author}', author);
   } else {
@@ -151,8 +151,8 @@ gulp.task('update-package.json', function() {
   const newContent = content.replace(/"version": "(.*)"/g, `"version": "${version}"`)
                             .replace('"build": "ng build",', `"build": "ng build --aot --prod --sourceMap=false --outputHashing=none",
     "package": "web-ext build --source-dir=dist/${name} --artifacts-dir=.",
-    "ghbuild": "ng build --prod --base-href \\"/${name}/\\"",
-    "ghdeploy": "ngh --dir=dist/${name}",`);
+    "build:github": "ng build --prod --base-href \\"/${name}/\\"",
+    "deploy:github": "ngh --dir=dist/${name}",`);
 
   return file('package.json', newContent, { src: true })
     .pipe(gulp.dest(directory));
