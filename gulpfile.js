@@ -86,8 +86,8 @@ gulp.task('add-guard-service', function() {
 });
 
 gulp.task('add-assets', function() {
-  return file('icon.png', getFileContent('tpl/src/assets/images/icon.png', null), { src: true })
-    .pipe(gulp.dest(getAbsolutePath('/src/assets/images')));
+  return file('128.png', getFileContent('tpl/src/assets/icons/128.png', null), { src: true })
+    .pipe(gulp.dest(getAbsolutePath('/src/assets/icons')));
 });
 
 gulp.task('add-locales', function() {
