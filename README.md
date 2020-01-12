@@ -30,7 +30,7 @@ gulp new --name <EXTENSION_NAME>
 
 :warning: All the newly created extensions will be under the `output` folder.
 
-## Arguments
+### Arguments
 
  argument         |  default  | description
 ----------------- | --------- | ---------------------
@@ -39,6 +39,22 @@ gulp new --name <EXTENSION_NAME>
  **--author**     | -         | Author name
  **--url**        | -         | Homepage url
  **--skipTests**  | false     | When true, does not generate `spec.ts` test files for the new extension
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Package
+
+Make sure you have the following package installed `npm install -g web-ext`. Then run:
+
+```
+npm run build && npm run package
+```
 
 ## Contributing
 
