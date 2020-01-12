@@ -28,9 +28,7 @@ npm install -g @angular/cli gulp-cli
 gulp new --name <EXTENSION_NAME>
 ```
 
-:warning: All the newly created extensions will be under the `output` folder.
-
-### Arguments
+**Arguments:**
 
  argument         |  default  | description
 ----------------- | --------- | ---------------------
@@ -39,6 +37,8 @@ gulp new --name <EXTENSION_NAME>
  **--author**     | -         | Author name
  **--url**        | -         | Homepage url
  **--skipTests**  | false     | When true, does not generate `spec.ts` test files for the new extension
+
+:warning: All the newly created extensions will be under the `output` folder.
 
 ## Development server
 
@@ -55,6 +55,22 @@ Make sure you have the following package installed `npm install -g web-ext`. The
 ```
 npm run build && npm run package
 ```
+
+## Load in browser
+
+Make sure to build the extension first before trying to load it in your browser.
+
+### Firefox:
+
+Navigate to `about:debugging`
+
+![Load in firefox](load-in-firefox.gif)
+
+### Chrome:
+
+Navigate to chrome extensions
+
+![Load in chrome](load-in-chrome.gif)
 
 ## Contributing
 
