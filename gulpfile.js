@@ -70,6 +70,11 @@ gulp.task('generate-settings-component',
   shell.task(`cd ${directory} && ng g c components/settings`)
 );
 
+gulp.task('udpate-popup-component', function() {
+  return file('popup.component.html', getFileContent(getAbsolutePath('/src/app/app.component.html')), { src: true })
+    .pipe(gulp.dest(getAbsolutePath('/src/app/components/popup')));
+});
+
 gulp.task('udpate-app-component', function() {
   return file('app.component.html', getFileContent('tpl/src/app/app.component.html'), { src: true })
     .pipe(gulp.dest(getAbsolutePath('/src/app')));
@@ -151,6 +156,7 @@ gulp.task('new', gulp.series(
   'install-packages',
   'generate-popup-component',
   'generate-settings-component',
+  'udpate-popup-component',
   'udpate-app-component',
   'udpate-app-routing',
   'add-guard-service',
