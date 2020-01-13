@@ -70,20 +70,6 @@ gulp.task('generate-settings-component',
   shell.task(`cd ${directory} && ng g c components/settings`)
 );
 
-gulp.task('udpate-popup-component', gulp.series(
-  function() {
-    return file('popup.component.html', getFileContent('tpl/src/app/components/popup/popup.component.html'), { src: true })
-      .pipe(gulp.dest(getExtensionPath('/src/app/components/popup')));
-  },
-  function() {
-    const content = getFileContent('tpl/src/app/components/popup/popup.component.ts');
-    const newContent = content.replace('${title}', name);
-
-    return file('popup.component.ts', newContent, { src: true })
-      .pipe(gulp.dest(getExtensionPath('/src/app/components/popup')));
-  }
-));
-
 gulp.task('udpate-app-component', function() {
   return file('app.component.html', getFileContent('tpl/src/app/app.component.html'), { src: true })
     .pipe(gulp.dest(getExtensionPath('/src/app')));
@@ -173,7 +159,6 @@ gulp.task('new', gulp.series(
   'install-packages',
   'generate-popup-component',
   'generate-settings-component',
-  'udpate-popup-component',
   'udpate-app-component',
   'udpate-app-routing',
   'add-guard-service',
