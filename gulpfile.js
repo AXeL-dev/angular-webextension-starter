@@ -10,7 +10,7 @@
  * Requirements
  */
 const gulp = require('gulp');
-const shell = require('gulp-shell')
+const shell = require('gulp-shell');
 const argv = require('yargs').argv;
 const file = require('gulp-file');
 const fs = require('fs');
