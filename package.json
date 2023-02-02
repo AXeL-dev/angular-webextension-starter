@@ -21,7 +21,7 @@
     "yargs": "^15.0.2"
   },
   "devDependencies": {
-    "@angular/cli": "^8.3.21",
+    "@angular/cli": "^15.1.4",
     "gulp-cli": "^2.2.0"
   }
 }
